@@ -53,7 +53,9 @@
                         <span class="button"><input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">{{__cms("Выбрать")}}</span>
                         <input type="text" placeholder="{{__cms("Выбрать файл (jpg, gif, png или swf)")}}" readonly="">
                     </div>
-                    {{isset($info->path_file)?"<p class='banner_preview'><a href='".$info->path_file."' target='_blank'><img src='".$info->path_file."'></a></p>":""}}
+                    @if(isset($info->path_file))
+                        <p class='banner_preview'><a href='{{$info->path_file}}' target='_blank'><img src='{{$info->path_file}}'></a></p>
+                    @endif
                 </section>
             </div>
             <div class="row">
