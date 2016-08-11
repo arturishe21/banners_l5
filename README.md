@@ -1,7 +1,7 @@
 
 В composer.json добавляем в блок require
 ```json
- "vis/banners": "1.0.*"
+ "vis/banners_l5": "1.0.*"
 ```
 
 Выполняем
