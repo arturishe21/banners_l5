@@ -58,6 +58,7 @@ class Banner extends Eloquent
             $banners = $area->banners ();
 
             if ($banners != false) {
+                $banners = (array) $banners;
                 Banner::find ($banners['id'])->increment ("hit_count");
                 $target = $banners['is_target_blank'] ? "target='_blank'" : "";
 

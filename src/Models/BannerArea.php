@@ -27,7 +27,7 @@ class BannerArea extends Eloquent
     {
 
         $results = Cache::tags (array ('banners'))
-            ->remember ('banners', 10, function () {
+            ->remember ('banners' . $this->id, 10, function () {
 
                 $this_time = date ("Y-m-d G:i:00");
                 $results = DB::select (
