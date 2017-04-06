@@ -24,7 +24,7 @@ class BannerArea extends Eloquent
     //get banner
     public function banners ()
     {
-        
+
        $results = Cache::tags (array ('banners'))
             ->remember ('banners' . $this->id, 10, function () {
 
@@ -32,8 +32,8 @@ class BannerArea extends Eloquent
                 $results = Banner::where('id_banners_platform', $this->id)
                     ->where('path_file', '!=', '')
                     ->where('is_show', 1)
-                    ->where(function ($query) use ($thisTime) {
-                        $query->where(function ($query) use ($thisTime) {
+                    ->where(function (Eloquent $query) use ($thisTime) {
+                        $query->where(function (Eloquent $query) use ($thisTime) {
                             $query->where('show_start', '<', $thisTime)
                                 ->orWhere('show_finish', '>', $thisTime);
                         })
