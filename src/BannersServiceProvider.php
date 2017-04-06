@@ -1,9 +1,7 @@
 <?php namespace Vis\Banners;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Finder\Finder;
 
 class BannersServiceProvider extends ServiceProvider
 {
@@ -56,6 +54,3 @@ class BannersServiceProvider extends ServiceProvider
     {
     }
 }
-
-
-

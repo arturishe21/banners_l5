@@ -113,3 +113,4 @@
 </div>
 
 <script src="{{asset('packages/vis/banners/js/banners.js')}}"></script>
+

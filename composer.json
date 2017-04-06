@@ -1,6 +1,7 @@
 {
   "name": "vis/banners_l5",
   "description": "banners for laravel 5",
+  "license": "proprietary",
   "authors": [
     {
       "name": "vis",

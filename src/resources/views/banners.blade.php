@@ -12,7 +12,5 @@
 @stop
 
 @section('main')
-
     @include("banners::part.banners_banner_center")
-
 @stop

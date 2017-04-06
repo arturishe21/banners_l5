@@ -11,3 +11,4 @@
     ><img src='{{$banners['path_file']}}' width='{{$area['width']}}' height='{{$area['height']}}'
         ></a>
 @endif
+

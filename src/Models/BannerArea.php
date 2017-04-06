@@ -78,5 +78,4 @@ class BannerArea extends Eloquent
             return false;
         }
     }
-
 }

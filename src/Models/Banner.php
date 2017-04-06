@@ -13,8 +13,8 @@ class Banner extends Eloquent
     use \Venturecraft\Revisionable\RevisionableTrait;
 
     protected $revisionEnabled = true;
-    protected $revisionCleanup = true; //Remove old revisions (works only when used with $historyLimit)
-    protected $historyLimit = 500; //Maintain a maximum of 500 changes at any point of time, while cleaning up old revisions.
+    protected $revisionCleanup = true;
+    protected $historyLimit = 500;
 
 
     protected $table = 'banners';
@@ -57,7 +57,7 @@ class Banner extends Eloquent
             $area = BannerArea::where ("slug", $slug)->first ();
             $banners = $area->banners ();
 
-            if ($banners != false) {
+            if ($banners !== false) {
                 $banners = (array) $banners;
                 Banner::find ($banners['id'])->increment ("hit_count");
                 $target = $banners['is_target_blank'] ? "target='_blank'" : "";

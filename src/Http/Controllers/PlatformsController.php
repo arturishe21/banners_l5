@@ -1,11 +1,9 @@
 <?php namespace Vis\Banners\Controllers;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller;
 use Vis\Banners\BannerArea;
 use Vis\Banners\Banner;
@@ -85,5 +83,4 @@ class PlatformsController extends Controller
 
         return Response::json(array('status' => 'ok'));
     } //end doDeleteArea
-
 }

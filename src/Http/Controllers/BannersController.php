@@ -1,10 +1,8 @@
 <?php namespace Vis\Banners\Controllers;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Vis\Banners\Banner;
 use Vis\Banners\BannerArea;
