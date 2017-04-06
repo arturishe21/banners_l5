@@ -54,12 +54,25 @@ class Banner extends Eloquent
     public static function show ($slug)
     {
         if ($slug) {
-            $area = BannerArea::where ("slug", $slug)->first ();
+            $area = Cache::tags (array ('banners'))
+                ->remember ('bannerArea' . $slug, 10, function () use ($slug) {
+                    $area = BannerArea::where ("slug", $slug)->first ();
+
+                    return $area;
+                });
             $banners = $area->banners ();
 
             if ($banners !== false) {
                 $banners = (array) $banners;
-                Banner::find ($banners['id'])->increment ("hit_count");
+
+                $banner = Cache::tags (array ('banners'))
+                    ->remember ('banner_this' . $banners['id'], 10, function () use ($banners) {
+                        $banner = Banner::find ($banners['id']);
+
+                        return $banner;
+                    });
+
+                $banner->increment ("hit_count");
                 $target = $banners['is_target_blank'] ? "target='_blank'" : "";
 
                 return View::make ('banners::show',

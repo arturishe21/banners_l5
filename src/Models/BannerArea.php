@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Validator;
 
 class BannerArea extends Eloquent
 {
-
     use \Venturecraft\Revisionable\RevisionableTrait;
 
     protected $table = 'banners_platforms';
@@ -25,24 +24,27 @@ class BannerArea extends Eloquent
     //get banner
     public function banners ()
     {
-
-        $results = Cache::tags (array ('banners'))
+        
+       $results = Cache::tags (array ('banners'))
             ->remember ('banners' . $this->id, 10, function () {
 
-                $this_time = date ("Y-m-d G:i:00");
-                $results = DB::select (
-                    DB::raw ("SELECT banners.* FROM
-                      banners
-
-                       WHERE
-                      id_banners_platform = '" . $this->id . "' and
-                      path_file != '' and
-                      is_show = 1 and
-                        ((show_start < '$this_time' or show_finish> '$this_time') or show_finish = '0000-00-00 00:00:00' or is_show_all='1') ")
-                );
+                $thisTime = date ("Y-m-d G:i:00");
+                $results = Banner::where('id_banners_platform', $this->id)
+                    ->where('path_file', '!=', '')
+                    ->where('is_show', 1)
+                    ->where(function ($query) use ($thisTime) {
+                        $query->where(function ($query) use ($thisTime) {
+                            $query->where('show_start', '<', $thisTime)
+                                ->orWhere('show_finish', '>', $thisTime);
+                        })
+                            ->orWhere('show_finish', '=', '0000-00-00 00:00:00')
+                            ->orWhere('is_show_all', 1)  ;
+                    })->get()->toArray();
 
                 return $results;
             });
+
+
 
         shuffle ($results);
 
