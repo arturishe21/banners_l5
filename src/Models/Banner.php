@@ -60,6 +60,9 @@ class Banner extends Eloquent
 
                     return $area;
                 });
+
+            if (!$area) return;
+
             $banners = $area->banners ();
 
             if ($banners !== false) {
